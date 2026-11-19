@@ -12,7 +12,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
   actions: write
 
 concurrency:
@@ -36,9 +35,8 @@ jobs:
           AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
           AIRTABLE_BASE: appoT0mDhS2u2N9iq
 
+      # The push starts GitHub Pages' own build (checked 2026-11-19), so no separate build request.
       - name: Publish any changes
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           git add airtable
           if git diff --cached --quiet; then
@@ -49,7 +47,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -q -m "Airtable sync: events and offices"
           git push -q
-          gh api -X POST "repos/${{ github.repository }}/pages/builds" > /dev/null || echo "::warning::Could not request a Pages build; the push should still trigger one."
 
       # GitHub turns off scheduled workflows in a public repo after 60 days without activity.
       - name: Keep the schedule on

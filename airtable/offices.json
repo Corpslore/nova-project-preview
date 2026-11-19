@@ -1,0 +1,74 @@
+[
+  {
+    "id": "recUCGhzWkjvhgV18",
+    "order": 1,
+    "office": "School Board",
+    "where": "All five localities",
+    "seats": "Fairfax 12, Prince William 8, Alexandria 9, Loudoun 4 of 9, Arlington 1 of 5",
+    "what": "Sets school policy, adopts the school budget request, and hires the superintendent.",
+    "link": {
+      "label": "Local races on VPAP",
+      "url": "https://www.vpap.org/elections/local/"
+    }
+  },
+  {
+    "id": "rec5AWrCbVHIHbCbb",
+    "order": 2,
+    "office": "Soil and Water Conservation District Director",
+    "where": "Fairfax, Loudoun and Prince William",
+    "seats": "3 per county, 4-year terms",
+    "what": "Guides local soil and water conservation programs. Arlington and Alexandria don't elect these directors.",
+    "link": {
+      "label": "Official election schedule",
+      "url": "https://www.elections.virginia.gov/media/boardpapers/calendar/SWCD_27_39.pdf"
+    }
+  },
+  {
+    "id": "recgOI6sSHXRosnfE",
+    "order": 3,
+    "office": "Board of Supervisors, County Board and City Council",
+    "where": "All five localities",
+    "seats": "Fairfax 10, Loudoun 9, Prince William 8, Arlington 2 of 5, Alexandria mayor and 6",
+    "what": "Sets local tax rates and the budget, and decides land use and zoning.",
+    "link": {
+      "label": "Local races on VPAP",
+      "url": "https://www.vpap.org/elections/local/"
+    }
+  },
+  {
+    "id": "recsBjpLJvPdKnoLo",
+    "order": 4,
+    "office": "Commonwealth's Attorney and Sheriff",
+    "where": "Fairfax, Loudoun, Prince William and Arlington",
+    "seats": "One of each per county, 4-year terms",
+    "what": "The county's elected prosecutor and sheriff. Some counties also elect a Treasurer and Commissioner of the Revenue in the same election.",
+    "link": {
+      "label": "How to run, from the Department of Elections",
+      "url": "https://www.elections.virginia.gov/candidatepac-info/"
+    }
+  },
+  {
+    "id": "recnIrfHTKjr8yahl",
+    "order": 5,
+    "office": "State Senate",
+    "where": "Virginia General Assembly",
+    "seats": "All 40 seats, 4-year terms",
+    "what": "The upper chamber of the General Assembly. It passes Virginia's laws and budget together with the House.",
+    "link": {
+      "label": "Senate races on VPAP",
+      "url": "https://www.vpap.org/elections/senate/"
+    }
+  },
+  {
+    "id": "recu9kzRaVSUelgc8",
+    "order": 6,
+    "office": "House of Delegates",
+    "where": "Virginia General Assembly",
+    "seats": "All 100 seats, 2-year terms",
+    "what": "Writes Virginia's laws and passes the state budget. Every Northern Virginia district is on the ballot.",
+    "link": {
+      "label": "House races on VPAP",
+      "url": "https://www.vpap.org/elections/house/"
+    }
+  }
+]

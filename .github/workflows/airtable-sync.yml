@@ -1,0 +1,59 @@
+# Refreshes the events and offices on pnova.org from the NoVA Project's Airtable base.
+# Runs every 4 hours (about 370 of the free plan's 1,000 Airtable API calls a month), and on demand:
+# Actions tab -> "Airtable sync" -> Run workflow.
+# Needs one repository secret, AIRTABLE_TOKEN: a read-only Airtable token for this base.
+# Source of truth: pages-repo/ in the site project; scripts/deploy-pages.sh copies it here.
+name: Airtable sync
+
+on:
+  schedule:
+    - cron: "17 */4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  actions: write
+
+concurrency:
+  group: airtable-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Copy events and offices from Airtable
+        run: node .github/airtable/sync.mjs
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+          AIRTABLE_BASE: appoT0mDhS2u2N9iq
+
+      - name: Publish any changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add airtable
+          if git diff --cached --quiet; then
+            echo "No changes to publish."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Airtable sync: events and offices"
+          git push -q
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" > /dev/null || echo "::warning::Could not request a Pages build; the push should still trigger one."
+
+      # GitHub turns off scheduled workflows in a public repo after 60 days without activity.
+      - name: Keep the schedule on
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/airtable-sync.yml/enable" || true
